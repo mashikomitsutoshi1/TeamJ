@@ -1,61 +1,62 @@
 package bean;
 
+import java.sql.Date;
+
 public class Teacher {
-    private String ID;
-    private String PASSWORD;
-    private String NAME;
-    private String ADMIN_FLG;
-    private String MAINTENANCE_DEADLINE;
-    private String RETIRE_FLG;
+    private String id;
+    private String password;
+    private String name;
+    private String adminFlg;
+    private Date maintenanceDeadline;
+    private String retireFlg;
 
     // Getter and Setter methods
 
     public String getId() {
-        return ID;
+        return id;
     }
 
-    public void setId(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPassword() {
-        return PASSWORD;
+        return password;
     }
 
-    public void setPassword(String PASSWORD) {
-        this.PASSWORD = PASSWORD;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
-        return NAME;
+        return name;
     }
 
-    public void setName(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAdminFlg() {
-        return ADMIN_FLG;
+        return adminFlg;
     }
 
-    public void setAdminFlg(String ADMIN_FLG) {
-        this.ADMIN_FLG = ADMIN_FLG;
+    public void setAdminFlg(String adminFlg) {
+        this.adminFlg = adminFlg;
     }
 
-    public String getMaintenanceDeadline() {
-        return MAINTENANCE_DEADLINE;
+    public Date getMaintenanceDeadline() {
+        return maintenanceDeadline;
     }
 
-    public void setMaintenanceDeadline(String MAINTENANCE_DEADLINE) {
-        this.MAINTENANCE_DEADLINE = MAINTENANCE_DEADLINE;
+    public void setMaintenanceDeadline(Date maintenanceDeadline) {
+        this.maintenanceDeadline = maintenanceDeadline;
     }
 
     public String getRetireFlg() {
-        return RETIRE_FLG;
+        return retireFlg;
     }
 
-    public void setRetireFlg(String RETIRE_FLG) {
-        this.RETIRE_FLG = RETIRE_FLG;
+    public void setRetireFlg(String retireFlg) {
+        this.retireFlg = retireFlg;
     }
 }
-
