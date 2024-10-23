@@ -1,18 +1,29 @@
 <%@page contentType="text/html; charset=UTF-8" %>
+<style>
+  .inline {
+    display: inline-block;
+    margin-right: 20px; /* 余白を調整 */
+  }
+  .main {
+    margin-bottom: 20px; /* メインセクションの余白 */
+  }
+</style>
+
+
 <div class="main">
   <p>処理内容</p>
-  <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post">
+  <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="inline">
     <label>
       <input class="js-check" type="checkbox" name="rs" value="1" onchange="studentNumberRegist(this)">学籍番号
     </label>
   </form>
-  <form id="class_regist" action="ScoreRegistClassSearchScreenDisplay.action" method="post">
+  <form id="class_regist" action="ScoreRegistClassSearchScreenDisplay.action" method="post" class="inline">
     <label>
       <input class="js-check" type="checkbox" name="rs" value="1" onchange="classRegist(this)">クラス指定
     </label>
   </form>
   <label>
-    成績保守期限:<span id="formattedDate"></span>
+    成績保守期限:<span id="formattedDate" class="inline"></span>
   </label>
 </div>
 
