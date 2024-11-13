@@ -5,15 +5,17 @@
     // セッションの無効化
     session.invalidate();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>ログアウト</title>
-</head>
-<body>
+
+<%
+    // ページタイトルを設定
+    request.setAttribute("pageTitle", "ログアウト");
+%>
+
+<div class="container">
     <h2>ログアウトしました</h2>
     <p>再度ログインするには、以下のリンクをクリックしてください。</p>
-    <a href="log_in.jsp">ログインページに戻る</a>
+    <a href="log_in.jsp" class="button">ログインページに戻る</a>
+</div>
+
 </body>
 </html>

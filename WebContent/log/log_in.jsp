@@ -1,13 +1,12 @@
-<%-- ログインJSP --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
     <title>Login Screen</title>
     <style>
-        /* 基本スタイル */
+        /* スタイルの調整 */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -18,58 +17,89 @@
             align-items: center;
             height: 100vh;
         }
+
         .login-container {
-            /* ログインフォームデザイン */
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             width: 400px;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .login-container h2 {
-            /* タイトルスタイル */
+
+        h2 {
+            text-align: center;
             margin-bottom: 30px;
-            font-size: 28px;
+            font-size: 24px;
             color: #333;
         }
-        .login-container label {
-            /* ラベルスタイル */
+
+        .error-message {
+            color: red;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        label {
             display: block;
-            margin-bottom: 10px;
-            color: #333;
             font-size: 16px;
+            margin-bottom: 8px;
+            color: #555;
         }
-        .login-container input {
-            /* 入力フィールドスタイル */
+
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 25px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 16px;
+            box-sizing: border-box;
         }
-        .login-container button {
-            /* ログインボタン */
+
+        button {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-size: 18px;
+            text-align: center;
         }
-        .login-container button:hover {
-            /* ボタンホバー時のスタイル */
+
+        button:hover {
             background-color: #45a049;
         }
-        .error-message {
-            /* エラーメッセージ */
-            color: red;
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
             margin-bottom: 20px;
-            font-size: 16px;
+        }
+
+        .checkbox-container input {
+            margin-right: 8px;
+        }
+
+        /* ボタンのリンク */
+        a.button {
+            background-color: #007BFF;
+        }
+
+        a.button:hover {
+            background-color: #0056b3;
         }
     </style>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById("password");
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+    </script>
 </head>
 <body>
     <div class="login-container">
@@ -94,6 +124,11 @@
 
             <label for="password">PWを入力してください。</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <%-- パスワード表示チェックボックス --%>
+            <div class="checkbox-container">
+                <input type="checkbox" onclick="togglePasswordVisibility()"> <label>パスワードを表示</label>
+            </div>
 
             <button type="submit">Login</button>
         </form>

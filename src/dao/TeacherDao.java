@@ -11,7 +11,7 @@ import bean.Teacher;
 
 public class TeacherDao extends Dao {
 
-    // ログイン用メソッド：IDとパスワードで教員を検索
+	 // ログイン用メソッド：IDとパスワードで教員を検索
     public Teacher login(String id, String password) {
         Teacher teacher = null;
         String sql = "SELECT * FROM TEACHER WHERE ID = ? AND PASSWORD = ?";
@@ -24,6 +24,10 @@ public class TeacherDao extends Dao {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
+                // retire_flgが1の場合は無効なユーザーとしてnullを返す
+                if ("1".equals(rs.getString("RETIRE_FLG"))) {
+                    return null;
+                }
                 teacher = new Teacher();
                 teacher.setId(rs.getString("ID"));
                 teacher.setPassword(rs.getString("PASSWORD"));
@@ -38,34 +42,39 @@ public class TeacherDao extends Dao {
 
         return teacher;
     }
+    // ログイン用メソッド2：退職者であるかをチェックする
+    public Teacher getTeacherById(String id) {
+        Teacher teacher = null;
 
-    // 退職フラグを更新するメソッド
-    public void updateRetireFlg(String teacherId, String retireFlg) {
-        String sql = "UPDATE TEACHER SET RETIRE_FLG = ? WHERE ID = ?";
+        String sql = "SELECT * FROM TEACHER WHERE ID = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, retireFlg);
-            pstmt.setString(2, teacherId);
-            int affectedRows = pstmt.executeUpdate();
+            stmt.setString(1, id);
 
-            // 更新件数に応じたメッセージを出力
-            if (affectedRows > 0) {
-                System.out.println("Updated teacher with ID: " + teacherId + " to retireFlg: " + retireFlg);
-            } else {
-                System.out.println("No teacher found with ID: " + teacherId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    teacher = new Teacher();
+                    teacher.setId(rs.getString("ID"));
+                    teacher.setName(rs.getString("NAME"));
+                    teacher.setAdminFlg(rs.getString("ADMIN_FLG"));
+                    teacher.setRetireFlg(rs.getString("RETIRE_FLG"));
+
+                }
             }
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return teacher;
     }
+
 
     // 全教員のリストを取得するメソッド
     public List<Teacher> getTeacherList() {
         List<Teacher> teacherList = new ArrayList<>();
-        String sql = "SELECT ID, NAME, RETIRE_FLG FROM TEACHER ORDER BY NAME"; // NAMEで並び替え
+        //ID, NAME, RETIRE_FLG, ADMIN_FLG, MAINTENANCE_DEADLINEを得るためのSQL
+        String sql = "SELECT ID, NAME, RETIRE_FLG, ADMIN_FLG, MAINTENANCE_DEADLINE FROM TEACHER ORDER BY NAME";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -76,7 +85,9 @@ public class TeacherDao extends Dao {
                 Teacher teacher = new Teacher();
                 teacher.setId(rs.getString("ID"));
                 teacher.setName(rs.getString("NAME"));
-                teacher.setRetireFlg(rs.getString("RETIRE_FLG"));
+                teacher.setRetireFlg(rs.getString("RETIRE_FLG"));//退職者
+                teacher.setAdminFlg(rs.getString("ADMIN_FLG"));//管理者権限
+                teacher.setMaintenanceDeadline(rs.getDate("MAINTENANCE_DEADLINE")); // 保守期限
                 teacherList.add(teacher);
             }
         } catch (SQLException e) {
@@ -94,11 +105,85 @@ public class TeacherDao extends Dao {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             int affectedRows = pstmt.executeUpdate();
-            // リセットされた件数を出力
+            // リセットされた件数出力
             System.out.println("All retireFlg reset to 0 for " + affectedRows + " teachers.");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    // 退職フラグを更新するメソッド
+    public void updateRetireFlg(String teacherId, String retireFlg) {
+        String sql = "UPDATE TEACHER SET RETIRE_FLG = ? WHERE ID = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, retireFlg);
+            pstmt.setString(2, teacherId);
+            int affectedRows = pstmt.executeUpdate();
+
+            // 更新件数に応じたメッセージ出力
+            if (affectedRows > 0) {
+                System.out.println("Updated teacher with ID: " + teacherId + " to retireFlg: " + retireFlg);
+            } else {
+                System.out.println("No teacher found with ID: " + teacherId);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 全教員の管理者フラグをリセットするメソッド
+    public void resetAllAdminFlg() {
+        String sql = "UPDATE TEACHER SET ADMIN_FLG = '0'";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println("All adminFlg reset to 0 for " + affectedRows + " teachers.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 管理者フラグを更新するメソッド
+    public void updateAdminFlg(String teacherId, String adminFlg) {
+        String sql = "UPDATE TEACHER SET ADMIN_FLG = ? WHERE ID = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, adminFlg);
+            pstmt.setString(2, teacherId);
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Updated teacher with ID: " + teacherId + " to adminFlg: " + adminFlg);
+            } else {
+                System.out.println("No teacher found with ID: " + teacherId);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 保守期限を更新するメソッド
+    public void updateMaintenanceDeadline(String teacherId, java.sql.Date maintenanceDeadline) {
+        String sql = "UPDATE TEACHER SET MAINTENANCE_DEADLINE = ? WHERE ID = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setDate(1, maintenanceDeadline);
+            pstmt.setString(2, teacherId);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
