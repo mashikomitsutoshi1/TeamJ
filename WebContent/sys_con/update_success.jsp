@@ -12,10 +12,10 @@
     <script type="text/javascript">
         // 終了ボタンを押した際の確認
         function confirmClose() {
-            var logoutConfirmation = confirm("終了しますか？ログアウトしますか？");
+            var logoutConfirmation = confirm("終了しますか？");
             if (logoutConfirmation) {
                 // ログアウト処理のURLに遷移
-                window.location.href = "<%= request.getContextPath() %>/log/logout.jsp"; // ログアウト画面のURL
+                window.location.href = "<%= request.getContextPath() %>/log/logout.jsp"; 
             }
         }
     </script>
