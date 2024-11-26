@@ -10,8 +10,17 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles CSS -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/styles.css">
-
+	<style>
+        /* 背景デザイン */
+        body {
+            background-color: #e0f7ff; /* 薄い青色 */
+            background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
+                              linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
+            background-size: 20px 20px; /* 方眼のサイズ調整 */
+        }
+    </style>
     <!-- 日付用カレンダーUIの読み込み -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

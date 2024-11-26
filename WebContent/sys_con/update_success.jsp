@@ -8,6 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles CSS -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/styles.css">
+	<style>
+        /* 背景デザイン */
+        body {
+            background-color: #e0f7ff; /* 薄い青色 */
+            background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
+                              linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
+            background-size: 20px 20px; /* 方眼のサイズ調整 */
+        }
+    </style>
 
     <script type="text/javascript">
         // 終了ボタンを押した際の確認
@@ -15,7 +24,7 @@
             var logoutConfirmation = confirm("終了しますか？");
             if (logoutConfirmation) {
                 // ログアウト処理のURLに遷移
-                window.location.href = "<%= request.getContextPath() %>/log/logout.jsp"; 
+                window.location.href = "<%= request.getContextPath() %>/log/logout.jsp";
             }
         }
     </script>
