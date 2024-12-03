@@ -28,6 +28,7 @@
 </div>
 
   <br>
+
 <div class="search">
 
   <span id="class" class="inline">　クラス：<input type="text" name="class" value="" size="5" form="search_class" pattern="^[0-9]+$" > </span>
@@ -38,7 +39,8 @@
   </form>
   <span id="enrollment_date" class="inline">　在籍者抽出日：<input type="date" name="enrollment_date" value="" size="5" form="search_class"> </span>
   <input type="hidden" id="subject_cd" name="subject_cd" value="${subject_cd }" form="search_class">
-  <form id="search_class" action="ScoreRegistClassRegistScreenDisplay.action" method="get">
+  <input type="hidden" id="subject_name" name="subject_name" value="${subject_name }" form="search_class">
+  <form id="search_class" action="ScoreRegistClassRegistScreenDisplay.action" method="post">
   	<input type="submit" value="開始">
   </form>
 </div>
