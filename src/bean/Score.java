@@ -1,14 +1,18 @@
 package bean;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Score {
 	private String subjectCode; //科目コード
+	private String subjectName; //科目名
 	private int admissionYear; // 入学年度
 	private String studentNo; //学籍番号
 	private int month; //月
 	private int point; //点数
 	private Date extractionDate; //抽出日
+	private String studentName; //学生名
+	private String studyYear; //学年
+	private String className; //クラス
 	/**
 	 * @return subjectCode
 	 */
@@ -80,5 +84,53 @@ public class Score {
 	 */
 	public void setExtractionDate(Date extractionDate) {
 		this.extractionDate = extractionDate;
+	}
+	/**
+	 * @return studentName
+	 */
+	public String getStudentName() {
+		return studentName;
+	}
+	/**
+	 * @param studentName セットする studentName
+	 */
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	/**
+	 * @return subjectName
+	 */
+	public String getSubjectName() {
+		return subjectName;
+	}
+	/**
+	 * @param subjectName セットする subjectName
+	 */
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+	/**
+	 * @return studyYear
+	 */
+	public String getStudyYear() {
+		return studyYear;
+	}
+	/**
+	 * @param studyYear セットする studyYear
+	 */
+	public void setStudyYear(String studyYear) {
+		this.studyYear = studyYear;
+	}
+	/**
+	 * @return className
+	 */
+	public String getClassName() {
+		return className;
+	}
+	/**
+	 * @param className セットする className
+	 */
+	public void setClassName(String className) {
+		this.className = className;
 	}
 }
