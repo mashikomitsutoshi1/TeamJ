@@ -12,7 +12,7 @@ import tool.Action;
 
 // 学生一覧Action
 public class ClassListSelectAction extends Action {
-	public String execute(
+	public void execute(
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
 
@@ -35,7 +35,8 @@ public class ClassListSelectAction extends Action {
             request.setAttribute("error2", error2);
             request.setAttribute("error3", error3);
 
-            return "/error.jsp";
+            // return "/error.jsp";
+    		request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 
 		try {
@@ -59,7 +60,8 @@ public class ClassListSelectAction extends Action {
 		}
 
 		// 処理が完了したら"list.jsp"ページを返す
-		return "Studentlist.jsp";
+		// return "Studentlist.jsp";
+		request.getRequestDispatcher("Studentlist.jsp").forward(request, response);
 
 	}
 }

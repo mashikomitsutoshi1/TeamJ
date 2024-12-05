@@ -23,7 +23,7 @@ public class ClassListWriteToCsvAction extends Action {
 	 * @return 処理結果としてのJSPページの名前
 	 * @throws Exception 処理中に発生する可能性のある例外
 	 */
-	public String execute(
+	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 		) throws Exception{
 
@@ -69,6 +69,7 @@ public class ClassListWriteToCsvAction extends Action {
         System.out.println("CSVファイルが " + filePath + " に書き込まれました。");
 
 		// 処理が完了したら"list.jsp"ページを返す
-		return "Studentlist.jsp";
+		// return "Studentlist.jsp";
+		request.getRequestDispatcher("Studentlist.jsp").forward(request, response);
 	}
 }

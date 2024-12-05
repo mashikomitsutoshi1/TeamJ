@@ -20,7 +20,7 @@ public class GradeReportAction extends Action {
 	 * @return 処理結果としてのJSPページの名前
 	 * @throws Exception 処理中に発生する可能性のある例外
 	 */
-	public String execute(
+	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 		) throws Exception{
 
@@ -44,6 +44,8 @@ public class GradeReportAction extends Action {
 		}
 
 		// 処理が完了したら"list.jsp"ページを返す
-		return "GradeReport.jsp";
+		// return "GradeReport.jsp";
+		request.getRequestDispatcher("GradeReport.jsp").forward(request, response);
+
 	}
 }

@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.StudentGradeReport;
-import dao.StudentGradeReportDao;
+import bean.GradeReport;
+import dao.GradeReportDao;
 import tool.Action;
 
 // 学生成績表Action
-public class StudentGradeReportSelectAction extends Action {
+public class GradeReportSelectAction extends Action {
 	public void execute(
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
@@ -40,19 +40,19 @@ public class StudentGradeReportSelectAction extends Action {
 		}
 
 		try {
-			// StudentGradeReportDaoのインスタンスを作成
-			StudentGradeReportDao dao = new StudentGradeReportDao();
+			// GradeReportDaoのインスタンスを作成
+			GradeReportDao dao = new GradeReportDao();
 
-			// データベースから学生とそのコース名の情報を全て取得
-			List<StudentGradeReport> sglist = dao.selectClass(s_admission_year,s_class_no);
+			// データベースから成績情報を全て取得
+			List<GradeReport> glist = dao.selectClass(s_admission_year,s_class_no);
 
 			// 取得した学生情報リストをリクエスト属性に設定
 			// リクエストスコープにセット（JSPで表示用）
-			request.setAttribute("sglist", sglist);
+			request.setAttribute("glist", glist);
 
 			// セッションスコープにセット（ファイル出力用）
 	        HttpSession session = request.getSession();
-	        session.setAttribute("sglist", sglist);
+	        session.setAttribute("glist", glist);
 		}
 		catch(Exception e) {
 			// 例外が発生した場合はスタックトレースを出力
@@ -61,7 +61,7 @@ public class StudentGradeReportSelectAction extends Action {
 
 		// 処理が完了したら"list.jsp"ページを返す
 		// return "StudentGradeReport.jsp";
-   		request.getRequestDispatcher("StudentGradeReport.jsp").forward(request, response);
+   		request.getRequestDispatcher("GradeReport.jsp").forward(request, response);
 
 	}
 }

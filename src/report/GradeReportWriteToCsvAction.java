@@ -24,7 +24,7 @@ public class GradeReportWriteToCsvAction extends Action {
 	 * @return 処理結果としてのJSPページの名前
 	 * @throws Exception 処理中に発生する可能性のある例外
 	 */
-	public String execute(
+	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 		) throws Exception{
 
@@ -72,6 +72,8 @@ public class GradeReportWriteToCsvAction extends Action {
         System.out.println("CSVファイルが " + filePath + " に書き込まれました。");
 
 		// 処理が完了したら"GradeReport.jsp"ページを返す
-		return "GradeReport.jsp";
+		// return "GradeReport.jsp";
+		request.getRequestDispatcher("GradeReport.jsp").forward(request, response);
+
 	}
 }
