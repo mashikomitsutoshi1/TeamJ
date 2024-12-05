@@ -78,7 +78,7 @@
                     <div class="card-body">
                         <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">シラバス保守</a>
                         <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">成績評価表</a>
-                        <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">成績評価保守</a>
+                        <a href="../scoreTypeClass/ScoreTypeSelect.action" class="btn btn-primary btn-sm mb-1 w-100">成績評価保守</a>
                         <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">学生成績表</a>
                         <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">出席率算出</a>
                     </div>
