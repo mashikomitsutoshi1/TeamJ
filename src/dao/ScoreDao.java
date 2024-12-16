@@ -184,10 +184,11 @@ public class ScoreDao extends Dao{
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+
 		try {
 			// データベースからテスト情報を取得
 			Score old = getTest(score.getStudentNo(), score.getSubjectCode(),score.getAdmissionYear());
-			if (old == null) {
+			if (old.getStudentNo() == null) {
 				// 学生が存在しなかった場合
 
 				// プリペアードステートメントにINSERT文をセット
@@ -294,6 +295,47 @@ public class ScoreDao extends Dao{
 		}
 
 		return score;
+	}
+
+	public void deleteScore(String studentNo, String subjectCode, int admissionYear) throws Exception{
+		// コネクションを確立
+		Connection connection = getConnection();
+		// プリペアードステートメント
+		PreparedStatement statement = null;
+		// リザルトセット
+		ResultSet rSet = null;
+
+		try {
+			// プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement("delete from score where subject_code = ? and admission_year = ? and student_no = ?");
+
+			statement.setString(1, subjectCode);
+			statement.setInt(2, admissionYear);
+			statement.setString(3, studentNo);
+
+			// プリペアードステートメントを実行
+			int count = statement.executeUpdate();
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
 	}
 
 }

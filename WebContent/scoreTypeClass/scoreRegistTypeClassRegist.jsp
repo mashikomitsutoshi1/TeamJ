@@ -59,6 +59,7 @@
 							<th></th>
 							<th></th>
 							<th><input type="text" id="input_point" name="point_all" value=""><input id="button_point" type="submit" value="得点一括変更"></th>
+							<th><input id="clear_point" type="submit" value="得点クリア"></th>
 						</tr>
 
 						<tr>
@@ -68,6 +69,7 @@
 							<th colspan="2">科目</th>
 							<th>氏名</th>
 							<th>得点</th>
+							<th></th>
 						</tr>
 						<c:forEach var="test" items="${list }">
 							<tr>
@@ -78,6 +80,7 @@
 								<td>${test.subjectName }</td>
 								<td>${test.studentName }</td>
 								<td><input type="text" id="point" name="point_${test.studentNo }" <c:if test="${test.point != 0}">value="${test.point }"</c:if> value="" ></td>
+								<td></td>
 							</tr>
 							<input type="hidden" name="regist" value="${test.studentNo }">
 						</c:forEach>
@@ -162,4 +165,15 @@
       point.value = inputPoint.value;
     });
   });
+
+  //得点一括クリア
+  const pointClear = document.getElementById("clear_point");
+  pointClear.addEventListener("click", function (event) {
+    event.preventDefault(); // フォーム送信を防ぐ
+    const points = document.querySelectorAll("input[id^='point']");
+    points.forEach((point) => {
+      point.value = "";
+    });
+  });
+
 </script>
