@@ -1,88 +1,95 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<style>
-  .inline {
-    display: inline-block;
-    margin-right: 20px; /* 余白を調整 */
-  }
-  .main {
-    margin-bottom: 20px; /* メインセクションの余白 */
-  }
-</style>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>成績登録画面</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 共通CSS -->
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/styles.css">
+	<style>
+	/* 背景デザイン */
+    body {
+    	background-color: #e0f7ff; /* 薄い青色 */
+        background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
+                          linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
+        background-size: 20px 20px; /* 方眼のサイズ調整 */
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- メインセクション -->
+    <div class="card main">
+        <p>処理内容</p>
+        <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="inline">
+            <label>
+                <input class="js-check form-check-input" type="checkbox" name="rs" value="1" onchange="studentNumberRegist(this)"> 学籍番号
+            </label>
+        </form>
+        <form id="class_regist" action="ScoreRegistClassSearchScreenDisplay.action" method="post" class="inline">
+            <label>
+                <input class="js-check form-check-input" type="checkbox" name="rs" value="1" checked onchange="classRegist(this)"> クラス指定
+            </label>
+        </form>
+        <label>
+            成績保守期限: <span id="formattedDate" class="inline"></span>
+        </label>
+    </div>
 
-
-<div class="main">
-  <p>処理内容</p>
-  <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="inline">
-    <label>
-      <input class="js-check" type="checkbox" name="rs" value="1" onchange="studentNumberRegist(this)">学籍番号
-    </label>
-  </form>
-  <form id="class_regist" action="ScoreRegistClassSearchScreenDisplay.action" method="post" class="inline">
-    <label>
-      <input class="js-check" type="checkbox" name="rs" value="1" checked>クラス指定
-    </label>
-  </form>
-  <label>
-    成績保守期限:<span id="formattedDate" class="inline"></span>
-  </label>
+    <!-- 検索セクション -->
+    <div class="card search">
+        <form id="search_class" action="ScoreRegistClassRegistScreenDisplay.action" method="post">
+            <span id="class" class="inline">クラス:
+                <input type="text" name="class" value="" size="5" pattern="^[0-9]+$" form="search_class">
+            </span>
+            <span id="regist_year" class="inline">処理年度:
+                <input type="text" name="regist_year" value="${regist_year}" size="5" readonly form="search_class">
+            </span>
+            <form id="subject_search" action="SubjectCodeSearch.action" method="post" class="inline">
+                <span id="subject" class="inline">科目:
+                    <input type="text" name="subject" value="${subject_cd }:${subject_name}" size="5" readonly>
+                </span>
+                <button class="btn btn-primary" id="search-button" name="subject">科目コード検索</button>
+            </form>
+            <span id="enrollment_date" class="inline">在籍者抽出日:
+                <input type="date" name="enrollment_date" value="" size="5" form="search_class">
+            </span>
+            <input type="hidden" id="subject_cd" name="subject_cd" value="${subject_cd}" form="search_class">
+            <input type="hidden" id="subject_name" name="subject_name" value="${subject_name}" form="search_class">
+            <input type="submit" value="開始">
+        </form>
+    </div>
 </div>
-
-  <br>
-
-<div class="search">
-
-  <span id="class" class="inline">　クラス：<input type="text" name="class" value="" size="5" form="search_class" pattern="^[0-9]+$" > </span>
-  <span id="regist_year" class="inline">　処理年度：<input type="text" name="regist_year" value="${regist_year }" size="5" form="search_class" readonly> </span>
-  <form id="subject_search" action="SubjectCodeSearch.action" method="post" class="inline">
-  	<span id="subject">　科目：<input type="text" name="subject" value="${subject_cd }:${subject_name}" size="5" readonly> </span>
-  	<button class="" id="search-button" name="subject" >科目コード検索</button>
-  </form>
-  <span id="enrollment_date" class="inline">　在籍者抽出日：<input type="date" name="enrollment_date" value="" size="5" form="search_class"> </span>
-  <input type="hidden" id="subject_cd" name="subject_cd" value="${subject_cd }" form="search_class">
-  <input type="hidden" id="subject_name" name="subject_name" value="${subject_name }" form="search_class">
-  <form id="search_class" action="ScoreRegistClassRegistScreenDisplay.action" method="post">
-  	<input type="submit" value="開始">
-  </form>
-</div>
-
-
 
 <script>
-  // サンプルとして、ISO 8601形式の日付を受け取る
-  var receivedDate = '2024-09-06';
+    // 日付を日本形式にフォーマット
+    var receivedDate = '2024-09-06';
+    var dateObj = new Date(receivedDate);
 
-  // 日付をJavaScriptのDateオブジェクトに変換する
-  var dateObj = new Date(receivedDate);
-
-  // 日本の慣習に従った形式で日付をフォーマットする関数
-  function formatDate(date) {
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1; // 月は0-indexedなので+1する
-    var day = date.getDate();
-
-    // フォーマットした日付を返す（例: YYYY年MM月DD日）
-    return year + '年' + month + '月' + day + '日';
-  }
-
-  // フォーマットした日付をHTMLに表示する
-  var formattedDate = formatDate(dateObj);
-  document.getElementById('formattedDate').textContent = formattedDate;
-
-  // クラス指定チェックを入れた瞬間実行
-  function classRegist(checkbox) {
-    var form = checkbox.form; // チェックボックスの親フォームを取得
-
-    if (checkbox.checked) {
-      form.submit(); // フォームを送信する
+    function formatDate(date) {
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        return year + '年' + month + '月' + day + '日';
     }
-  }
 
-  // 学籍番号にチェックを入れた瞬間実行
-  function studentNumberRegist(checkbox) {
-    var form = checkbox.form; // チェックボックスの親フォームを取得
+    document.getElementById('formattedDate').textContent = formatDate(dateObj);
 
-    if (checkbox.checked) {
-      form.submit(); // フォームを送信する
+    // クラス指定チェック
+    function classRegist(checkbox) {
+        if (checkbox.checked) {
+            checkbox.form.submit();
+        }
     }
-  }
+
+    // 学籍番号チェック
+    function studentNumberRegist(checkbox) {
+        if (checkbox.checked) {
+            checkbox.form.submit();
+        }
+    }
 </script>
+</body>
+</html>

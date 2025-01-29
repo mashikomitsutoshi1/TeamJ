@@ -1,68 +1,76 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-<style>
-  .inline {
-    display: inline-block;
-    margin-right: 20px; /* 余白を調整 */
-  }
-  .main {
-    margin-bottom: 20px; /* メインセクションの余白 */
-  }
-</style>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>成績入力</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- カスタムスタイル -->
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/styles.css">
 
+    <style>
+        body {
+            background-color: #e0f7ff;/* 薄い青色 */
+            background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
+                              linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
+            background-size: 20px 20px;/* 方眼のサイズ調整 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="main card p-3 mb-4">
+            <h5 class="card-title mb-3">処理内容</h5>
+            <div class="d-flex align-items-center">
+                <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="me-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="rs" value="1" id="studentCheckbox" onchange="studentNumberRegist(this)">
+                        <label class="form-check-label" for="studentCheckbox">学籍番号</label>
+                    </div>
+                </form>
+                <form id="class_regist" action="ScoreRegistClassSearchScreenDisplay.action" method="post">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="rs" value="1" id="classCheckbox" onchange="classRegist(this)">
+                        <label class="form-check-label" for="classCheckbox">クラス指定</label>
+                    </div>
+                </form>
+                <div class="ms-4">
+                    <span>成績保守期限: </span>
+                    <span id="formattedDate" class="badge bg-info text-dark"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="main">
-  <p>処理内容</p>
-  <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="inline">
-    <label>
-      <input class="js-check" type="checkbox" name="rs" value="1" onchange="studentNumberRegist(this)">学籍番号
-    </label>
-  </form>
-  <form id="class_regist" action="ScoreRegistClassSearchScreenDisplay.action" method="post" class="inline">
-    <label>
-      <input class="js-check" type="checkbox" name="rs" value="1" onchange="classRegist(this)">クラス指定
-    </label>
-  </form>
-  <label>
-    成績保守期限:<span id="formattedDate" class="inline"></span>
-  </label>
-</div>
+    <script>
+        var receivedDate = '2024-09-06';
+        var dateObj = new Date(receivedDate);
 
-<script>
-  // サンプルとして、ISO 8601形式の日付を受け取る
-  var receivedDate = '2024-09-06';
+        function formatDate(date) {
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            return year + '年' + month + '月' + day + '日';
+        }
 
-  // 日付をJavaScriptのDateオブジェクトに変換する
-  var dateObj = new Date(receivedDate);
+        var formattedDate = formatDate(dateObj);
+        document.getElementById('formattedDate').textContent = formattedDate;
 
-  // 日本の慣習に従った形式で日付をフォーマットする関数
-  function formatDate(date) {
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1; // 月は0-indexedなので+1する
-    var day = date.getDate();
+        function classRegist(checkbox) {
+            if (checkbox.checked) {
+                checkbox.form.submit();
+            }
+        }
 
-    // フォーマットした日付を返す（例: YYYY年MM月DD日）
-    return year + '年' + month + '月' + day + '日';
-  }
+        function studentNumberRegist(checkbox) {
+            if (checkbox.checked) {
+                checkbox.form.submit();
+            }
+        }
+    </script>
 
-  // フォーマットした日付をHTMLに表示する
-  var formattedDate = formatDate(dateObj);
-  document.getElementById('formattedDate').textContent = formattedDate;
-
-  // クラス指定チェックを入れた瞬間実行
-  function classRegist(checkbox) {
-    var form = checkbox.form; // チェックボックスの親フォームを取得
-
-    if (checkbox.checked) {
-      form.submit(); // フォームを送信する
-    }
-  }
-
-  // 学籍番号にチェックを入れた瞬間実行
-  function studentNumberRegist(checkbox) {
-    var form = checkbox.form; // チェックボックスの親フォームを取得
-
-    if (checkbox.checked) {
-      form.submit(); // フォームを送信する
-    }
-  }
-</script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
