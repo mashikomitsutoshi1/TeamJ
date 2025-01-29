@@ -10,6 +10,8 @@ public class Syllabus implements java.io.Serializable{
 	private String	course_name_breakdown;	// コース名内訳名
 	private String	study_year;				// 修業年月
 
+	private int		subject_count;			// 科目数
+
 	/**
 	 * @return admission_year
 	 */
@@ -93,5 +95,17 @@ public class Syllabus implements java.io.Serializable{
 	 */
 	public void setStudy_year(String study_year) {
 		this.study_year = study_year;
+	}
+	/**
+	 * @return subject_count
+	 */
+	public int getSubject_count() {
+		return subject_count;
+	}
+	/**
+	 * @param subject_count セットする subject_count
+	 */
+	public void setSubject_count(int subject_count) {
+		this.subject_count = subject_count;
 	}
 }
