@@ -42,7 +42,14 @@ public class ScoreRegistClassRegistExecuteAction extends Action {
 		//ビジネスロジック 4
 		for(String no : student_no){
 			Score score = new Score();
+			//得点が未入力の場合、削除処理
+			if(req.getParameter("point_" + no).equals("")){
+				scoreDao.deleteScore(no.substring(2), subjectCd, Integer.parseInt(no.substring(0,2)));
+				break;
+			}
 			point = Integer.parseInt(req.getParameter("point_" + no));
+			System.out.println(no.substring(2));
+			System.out.println(point);
 			if (point >= 0 && point <= 100) { // 得点が0～100の場合
 				// scoreに情報をセット
 				score.setStudentNo(no.substring(2));
@@ -67,7 +74,7 @@ public class ScoreRegistClassRegistExecuteAction extends Action {
 		req.setAttribute("count", count);
 
 		//Excel出力処理
-		if(excel.equals("1")){
+		if(excel != null){
 			excelSuccess = writeToCsv(subjectCd,classNum,registYear);
 		}
 
