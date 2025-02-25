@@ -23,7 +23,7 @@
         <div class="main card p-3 mb-4">
             <h5 class="card-title mb-3">処理内容</h5>
             <div class="d-flex align-items-center">
-                <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="me-3">
+                <form id="student_number_regist" action="scoreRegistStudentSearch.jsp" method="post" class="me-3">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="rs" value="1" id="studentCheckbox" onchange="studentNumberRegist(this)">
                         <label class="form-check-label" for="studentCheckbox">学籍番号</label>

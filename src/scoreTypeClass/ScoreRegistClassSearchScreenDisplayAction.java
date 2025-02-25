@@ -22,7 +22,7 @@ public class ScoreRegistClassSearchScreenDisplayAction extends Action {
 		//処理年度取得
         LocalDateTime nowDate = LocalDateTime.now();
         if(nowDate.getMonthValue() < 4){
-        	regist_year = nowDate.getYear() + 1;
+        	regist_year = nowDate.getYear() - 1;
         }else{
         	regist_year = nowDate.getYear();
         }

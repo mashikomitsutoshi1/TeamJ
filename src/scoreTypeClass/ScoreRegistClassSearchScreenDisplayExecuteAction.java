@@ -25,8 +25,9 @@ public class ScoreRegistClassSearchScreenDisplayExecuteAction extends Action {
 		//ビジネスロジック 4
 		//処理年度取得
         LocalDateTime nowDate = LocalDateTime.now();
+        System.out.println(nowDate.getMonthValue());
         if(nowDate.getMonthValue() < 4){
-        	regist_year = nowDate.getYear() + 1;
+        	regist_year = nowDate.getYear() - 1;
         }else{
         	regist_year = nowDate.getYear();
         }

@@ -23,7 +23,7 @@
     <!-- メインセクション -->
     <div class="card main">
         <p>処理内容</p>
-        <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="inline">
+        <form id="student_number_regist" action="scoreRegistStudentSearch.jsp" method="post" class="inline">
             <label>
                 <input class="js-check form-check-input" type="checkbox" name="rs" value="1" onchange="studentNumberRegist(this)"> 学籍番号
             </label>
@@ -40,26 +40,18 @@
 
     <!-- 検索セクション -->
     <div class="card search">
-        <form id="search_class" action="ScoreRegistClassRegistScreenDisplay.action" method="post">
-            <span id="class" class="inline">クラス:
-                <input type="text" name="class" value="" size="5" pattern="^[0-9]+$" form="search_class">
-            </span>
-            <span id="regist_year" class="inline">処理年度:
-                <input type="text" name="regist_year" value="${regist_year}" size="5" readonly form="search_class">
-            </span>
-            <form id="subject_search" action="SubjectCodeSearch.action" method="post" class="inline">
-                <span id="subject" class="inline">科目:
-                    <input type="text" name="subject" value="${subject_cd }:${subject_name}" size="5" readonly>
-                </span>
-                <button class="btn btn-primary" id="search-button" name="subject">科目コード検索</button>
-            </form>
-            <span id="enrollment_date" class="inline">在籍者抽出日:
-                <input type="date" name="enrollment_date" value="" size="5" form="search_class">
-            </span>
-            <input type="hidden" id="subject_cd" name="subject_cd" value="${subject_cd}" form="search_class">
-            <input type="hidden" id="subject_name" name="subject_name" value="${subject_name}" form="search_class">
-            <input type="submit" value="開始">
-        </form>
+		  <span id="class" class="inline">　クラス：<input type="text" name="class" value="" size="5" form="search_class" pattern="^[0-9]+$" > </span>
+		  <span id="regist_year" class="inline">　処理年度：<input type="text" name="regist_year" value="${regist_year }" size="5" form="search_class" readonly> </span>
+		  <form id="subject_search" action="SubjectCodeSearch.action" method="post" class="inline">
+		  	<span id="subject">　科目：<input type="text" name="subject" value="${subject_cd }:${subject_name}" size="5" readonly> </span>
+		  	<button class="" id="search-button" name="subject" >科目コード検索</button>
+		  </form>
+		  <span id="enrollment_date" class="inline">　在籍者抽出日：<input type="date" name="enrollment_date" value="" size="5" form="search_class"> </span>
+		  <input type="hidden" id="subject_cd" name="subject_cd" value="${subject_cd }" form="search_class">
+		  <input type="hidden" id="subject_name" name="subject_name" value="${subject_name }" form="search_class">
+		  <form id="search_class" action="ScoreRegistClassRegistScreenDisplay.action" method="post">
+		  	<input type="submit" value="開始">
+		  </form>
     </div>
 </div>
 

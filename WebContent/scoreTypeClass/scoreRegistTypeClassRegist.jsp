@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
   .inline {
@@ -14,7 +15,7 @@
 
 <div class="main">
   <p>処理内容</p>
-  <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="inline">
+  <form id="student_number_regist" action="scoreRegistStudentSearch.jsp" method="post" class="inline">
     <label>
       <input class="js-check" type="checkbox" name="rs" value="1" onchange="studentNumberRegist(this)">学籍番号
     </label>
@@ -47,62 +48,60 @@
   </form>
 </div>
 
-<div class="regist">
-    <form action="ScoreRegistClassRegistExecute.action" method="get">
-      <c:choose>
-        <c:when test="${list.size()>0 }">
-        <table class="table table-hover">
-            <tr>
-              <th></th>
-              <th><input type="text" id="input_month" name="month_all" value=""><input id="button_month" type="submit" value="月一括変更"></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th><input type="text" id="input_point" name="point_all" value=""><input id="button_point" type="submit" value="得点一括変更"></th>
-              <th><input id="clear_point" type="submit" value="得点クリア"></th>
-            </tr>
+<form action="ScoreRegistClassRegistExecute.action" method="get">
+	<c:choose>
+		<c:when test="${list.size()>0 }">
+			<table class="table table-hover">
+				<tr>
+					<th></th>
+					<th><input type="text" id="input_month" name="month_all" value=""><input id="button_month" type="submit" value="月一括変更"></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th><input type="text" id="input_point" name="point_all" value=""><input id="button_point" type="submit" value="得点一括変更"></th>
+					<th><input id="clear_point" type="submit" value="得点クリア"></th>
+				</tr>
 
-            <tr>
-              <th>学年</th>
-              <th>月</th>
-              <th>学生番号</th>
-              <th colspan="2">科目</th>
-              <th>氏名</th>
-              <th>得点</th>
-              <th></th>
-            </tr>
-            <c:forEach var="test" items="${list }">
-              <tr>
-                <td>${test.studyYear }</td>
-                <td><input type="text" id="month" name="month_${test.studentNo }" <c:if test="${test.month != 0}">value="${test.month }"</c:if> value=""  ></td>
-                <td>${test.studentNo }</td>
-                <td>${test.subjectCode }</td>
-                <td>${test.subjectName }</td>
-                <td>${test.studentName }</td>
-                <td><input type="text" id="point" name="point_${test.studentNo }" <c:if test="${test.point != 0}">value="${test.point }"</c:if> value="" ></td>
-                <td></td>
-              </tr>
-              <input type="hidden" name="regist" value="${test.studentNo }">
-            </c:forEach>
+				<tr>
+					<th>学年</th>
+					<th>月</th>
+					<th>学生番号</th>
+					<th colspan="2">科目</th>
+					<th>氏名</th>
+					<th>得点</th>
+					<th></th>
+				</tr>
+				<c:forEach var="test" items="${list }">
+				<tr>
+					<td>${test.studyYear }</td>
+					<td><input type="text" id="month" name="month_${test.studentNo }" <c:if test="${test.month != 0}">value="${test.month }"</c:if> value=""  ></td>
+					<td>${test.studentNo }</td>
+					<td>${test.subjectCode }</td>
+					<td>${test.subjectName }</td>
+					<td>${test.studentName }</td>
+					<td><input type="text" id="point" name="point_${test.studentNo }" <c:if test="${test.point != 0}">value="${test.point }"</c:if> value="" ></td>
+					<td></td>
+				</tr>
+				<input type="hidden" name="regist" value="${test.studentNo }">
+				</c:forEach>
 
-          </table>
-          <input class="excel-check" type="checkbox" name="excel" value="1">Excel出力
-          <input type="hidden" name="subject_cd" value="${subject_cd }">
-          <input type="hidden" name="enrollment_date" value="${enrollment_date}">
-          <input type="hidden" name="regist_year" value="${regist_year}">
-          <input type="hidden" name="class_num" value="${class_num}">
-          <button class="btn btn-secondary" id="filter-button">登録</button>
-        </c:when>
-        <c:when test="${count == 1 }">
-          <div>登録が完了しました</div>
-        </c:when>
-        <c:otherwise>
-          <div>学生情報が存在しませんでした</div>
-        </c:otherwise>
-      </c:choose>
-    </form>
-</div>
+			</table>
+			<input class="excel-check" type="checkbox" name="excel" value="1">Excel出力
+			<input type="hidden" name="subject_cd" value="${subject_cd }">
+			<input type="hidden" name="enrollment_date" value="${enrollment_date}">
+			<input type="hidden" name="regist_year" value="${regist_year}">
+			<input type="hidden" name="class_num" value="${class_num}">
+			<button class="btn btn-secondary" id="filter-button">登録</button>
+		</c:when>
+		<c:when test="${count == 1 }">
+			<div>登録が完了しました</div>
+		</c:when>
+		<c:otherwise>
+			<div>学生情報が存在しませんでした</div>
+		</c:otherwise>
+	</c:choose>
+</form>
 
 
 

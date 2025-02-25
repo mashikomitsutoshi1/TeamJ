@@ -83,4 +83,39 @@ public class StudentDao extends Dao {
         return list;
     }
 
+    public Student get(int admissionYear,String studentNo) throws Exception {
+
+        // 学生のリストを作成
+        Student student = new Student();
+
+        // データベースへの接続を取得
+        Connection con = getConnection();
+
+        // SQL文を準備
+        PreparedStatement st = con.prepareStatement("SELECT * FROM STUDENT WHERE admission_year = ? and student_no = ?");
+        st.setInt(1, admissionYear);
+        st.setString(2, studentNo);
+
+        // SQL文を実行し、結果セットを取得
+        ResultSet rs = st.executeQuery();
+
+        // 結果セットをループし、Studentオブジェクトにデータを設定
+        while (rs.next()) {
+            student.setAdmissionYear(rs.getInt("admission_year"));	 			//入学年度
+            student.setStudentNo(rs.getString("student_no")); 					//学籍番号
+            student.setStudentName(rs.getString("student_name")); 				//学生氏名
+            student.setStudentNameKana(rs.getString("student_name_kana")); 		//学生氏名（カナ）
+            student.setClassNo(rs.getString("class"));  						//クラス
+            student.setDispositionStatus(rs.getString("disposition_status"));	//処分ステータス
+            student.setTotalAbsences(rs.getFloat("total_absences"));  			//前月末欠席累計数
+        }
+
+        // リソースをクローズ
+        st.close();
+        con.close();
+
+        // 学生のリストを返す
+        return student;
+    }
+
 }
