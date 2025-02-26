@@ -39,7 +39,9 @@
 		<table>
 	        <tr>
 	            <th>入学年度</th><th>学籍番号</th><th>学科</th><th>コース</th><th>氏名</th>
+<!--
 	            <th>生年月日</th><th>入学</th><th>卒業</th>
+-->
 	            <th>科目名</th><th>単位</th><th>評価</th>
 	        </tr>
 
@@ -54,9 +56,11 @@
 			            <td>${t.departmentName}</td>
 			            <td>${t.courseName}</td>
 			            <td>${t.studentName}</td>
+	<!--
 			            <td></td>
 			            <td></td>
 			            <td></td>
+	-->
 			            <!-- 最初の科目情報を表示 -->
 			            <c:if test="${not empty t.gradeReport}">
 			                <td>${t.gradeReport[0].subject}</td>
@@ -74,9 +78,11 @@
 			                    <td></td>
 			                    <td></td>
 			                    <td></td>
+	<!--
 			                    <td></td>
 			                    <td></td>
 			                    <td></td>
+	-->
 			                    <td>${subject.subject}</td>
 			                    <td>${subject.credit}</td>
 			                    <td>${subject.grading}</td>
