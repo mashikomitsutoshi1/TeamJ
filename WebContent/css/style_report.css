@@ -1,0 +1,167 @@
+@charset "UTF-8"; /*文字コードの指定*/
+
+body {
+	font-size:16pt;
+	color:#999;
+    background-color: #e0f7fa; /* 薄い青色 */
+    background-image: linear-gradient(0deg, transparent 49%, #ffffff 50%, transparent 51%),
+                      linear-gradient(90deg, transparent 49%, #ffffff 50%, transparent 51%);
+    background-size: 20px 20px; /* 方眼のサイズ */
+
+}
+
+h1 {
+	font-size:100pt;
+	text-align:right;
+/*	color:#eee; */
+	color:#0077FF;
+	margin:20px 0px 20px 0px;
+}
+
+/* table {
+    margin-left: auto;
+    margin-right: auto;
+}
+ */
+th {
+	width:200px;
+	background-color:#999;
+	color:#fff;
+	padding:5px 10px;
+	white-space: nowrap;
+}
+
+td {
+	width:200px;
+	border:solid 1px #aaa;
+	color:#999;
+	padding:5px 10px;
+	white-space: nowrap;
+}
+
+hr {
+	margin:10px 0px;
+	border-top: 1px dashed #ddd;
+}
+
+a {
+	text-decoration:none;
+ 	color: inherit;
+}
+
+#wrapper {
+/*  width: 980px; */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* メイン部分 */
+#main {
+/*
+	text-align: center;
+*/
+}
+
+#sub {
+/*
+	text-align: center;
+*/
+}
+
+.menutitle {
+	font-size:14pt;
+	font-weight:bold;
+	margin: 0px;
+}
+
+.content {
+	margin:10px;
+}
+
+.footer {
+	text-align:right;
+	font-size:10pt;
+	margin:10px;
+	border-bottom:solid 1px #ccc;
+	color:#ccc;
+}
+.must {
+	color:#f00;
+}
+
+#global_navi{
+	width:980px;
+	clear:both;
+	overflow:hidden;
+	margin:16px auto;
+	font-size:16pt;
+}
+
+#global_navi ul{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+#global_navi ul li{
+	width:320px;
+	float:left;
+	background-color:#c0c0c0;
+	margin-right:1px;
+	margin-bottom:1px;
+	text-align:center;
+}
+
+#global_navi ul li a{
+	display:block;
+	padding:2px;
+	background-color:#352b23;
+	color:#fff;
+	text-decoration:none;
+	transition:background-color 0.2s linear;
+}
+
+#global_navi ul li a:hover{
+	background-color:#8c7a5b;
+}
+
+#list_navi a:hover{
+	color:#8c7a5b;
+}
+
+#submit_button_cover {
+/*   text-align: center;
+ */}
+
+#submit_button {
+/*   text-align: center; */
+/*  background-color: #b7a077;
+  border: 1px solid #b7a077; */
+  background-color: #0077FF;
+  border: 1px solid #0077FF;
+  padding: 15px 100px;
+  border-radius: 10px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.1s linear;
+}
+
+#submit_button:hover {
+/*  background: #c7ae81; */
+  background: #0055CC;
+}
+
+#flex{
+	display: flex;
+}
+
+select{
+	border: 1px solid;
+	font-size: 30px;
+}
+
+/* button {
+	width: 10em;
+	height:3em;
+} */
