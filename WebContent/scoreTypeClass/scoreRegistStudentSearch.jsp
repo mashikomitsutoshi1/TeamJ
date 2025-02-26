@@ -7,6 +7,13 @@
   .main {
     margin-bottom: 20px; /* メインセクションの余白 */
   }
+  /* 背景デザイン */
+    body {
+    	background-color: #e0f7ff; /* 薄い青色 */
+        background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
+                          linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
+        background-size: 20px 20px; /* 方眼のサイズ調整 */
+    }
 </style>
 
 <div class="main">
