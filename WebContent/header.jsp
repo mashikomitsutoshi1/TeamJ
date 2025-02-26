@@ -6,10 +6,11 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>経理本科システム</title>
-		<link rel="stylesheet" href="/TeamJ/style.css">
- <!--
+	    <!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="/TeamJ/css/style_report.css">
+<!--
  		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
  	</head>
 
-	<body>
+	<body class="body_report">
