@@ -105,7 +105,7 @@ public class StudentDao extends Dao {
             student.setStudentNo(rs.getString("student_no")); 					//学籍番号
             student.setStudentName(rs.getString("student_name")); 				//学生氏名
             student.setStudentNameKana(rs.getString("student_name_kana")); 		//学生氏名（カナ）
-            student.setClassNo(rs.getString("class"));  						//クラス
+            student.setClassNo(rs.getString("class_no"));  						//クラス
             student.setDispositionStatus(rs.getString("disposition_status"));	//処分ステータス
             student.setTotalAbsences(rs.getFloat("total_absences"));  			//前月末欠席累計数
         }

@@ -80,7 +80,7 @@
                         <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">成績評価表</a>
                         <a href="../scoreTypeClass/ScoreTypeSelect.action" class="btn btn-primary btn-sm mb-1 w-100">成績評価保守</a>
                         <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">学生成績表</a>
-                        <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">出席率算出</a>
+                        <a href="../attendance/AttendanceRateCalculation.action" class="btn btn-primary btn-sm mb-1 w-100">出席率算出</a>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="〇〇.jsp" method="post">
+                        <form action="../attendance/AttendanceEntry.action" method="post">
                             <h3 class="h6">出欠席入力</h3>
                             <div class="mb-2">
                                 <label for="processingYear" class="form-label">処理年月:</label>
@@ -116,7 +116,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="〇〇.jsp" method="post">
+                        <form action="../attendance/AttendanceWriteToCsv.action" method="post">
                             <h3 class="h6">出力基準日</h3>
                             <div class="mb-2">
                                 <label for="outputDate" class="form-label">出力基準日:</label>
