@@ -49,7 +49,8 @@ public class StudentGradeReportWriteToCsvAction extends Action {
             // ヘッダーを書き込み
             writer.write("学生成績表");
             writer.newLine(); // 改行
-            writer.write("入学年度,学籍番号,学科,コース,氏名,生年月日,入学,卒業,科目名,単位,評価");
+//            writer.write("入学年度,学籍番号,学科,コース,氏名,生年月日,入学,卒業,科目名,単位,評価");
+            writer.write("入学年度,学籍番号,学科,コース,氏名,科目名,単位,評価");
             writer.newLine(); // 改行
 
             // 各学生のデータをCSVに書き込み
@@ -59,10 +60,10 @@ public class StudentGradeReportWriteToCsvAction extends Action {
                 String departmentName = report.getDepartmentName();
                 String courseName = report.getCourseName();
                 String studentName = report.getStudentName();
-                int birthdayYear = report.getBirthdayYear();
-                int birthdayMonth = report.getBirthdayMonth();
-                int birthdayDay = report.getBirthdayDay();
-                int graduationYear = report.getGraduationYear();
+//                int birthdayYear = report.getBirthdayYear();
+//                int birthdayMonth = report.getBirthdayMonth();
+//                int birthdayDay = report.getBirthdayDay();
+//                int graduationYear = report.getGraduationYear();
 
                 // 各科目情報もループで書き込み
                 for ( Map<String, Object> subject : report.getGradeReport()) {
@@ -71,10 +72,13 @@ public class StudentGradeReportWriteToCsvAction extends Action {
                     String grading = (String) subject.get("grading");
 
                     // CSV行を作成して書き込み
-                    writer.write(String.format("%d,%s,%s,%s,%s,%d/%d/%d,%d,%d,%s,%d,%s%n",
+//                    writer.write(String.format("%d,%s,%s,%s,%s,%d/%d/%d,%d,%d,%s,%d,%s%n",
+//                            admissionYear, studentNo, departmentName, courseName, studentName,
+//                            birthdayYear, birthdayMonth, birthdayDay,
+//                            admissionYear, graduationYear, subjectName, credit, grading));
+                    writer.write(String.format("%d,%s,%s,%s,%s,%s,%d,%s%n",
                             admissionYear, studentNo, departmentName, courseName, studentName,
-                            birthdayYear, birthdayMonth, birthdayDay,
-                            admissionYear, graduationYear, subjectName, credit, grading));
+                            subjectName, credit, grading));
                 }
             }
         }
