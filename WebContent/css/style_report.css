@@ -13,16 +13,10 @@ body {
 h1 {
 	font-size:100pt;
 	text-align:right;
-/*	color:#eee; */
 	color:#0077FF;
 	margin:20px 0px 20px 0px;
 }
 
-/* table {
-    margin-left: auto;
-    margin-right: auto;
-}
- */
 th {
 	width:200px;
 	background-color:#999;
@@ -57,15 +51,9 @@ a {
 
 /* メイン部分 */
 #main {
-/*
-	text-align: center;
-*/
 }
 
 #sub {
-/*
-	text-align: center;
-*/
 }
 
 .menutitle {
@@ -130,13 +118,9 @@ a {
 }
 
 #submit_button_cover {
-/*   text-align: center;
- */}
+}
 
 #submit_button {
-/*   text-align: center; */
-/*  background-color: #b7a077;
-  border: 1px solid #b7a077; */
   background-color: #0077FF;
   border: 1px solid #0077FF;
   padding: 15px 100px;
@@ -148,7 +132,6 @@ a {
 }
 
 #submit_button:hover {
-/*  background: #c7ae81; */
   background: #0055CC;
 }
 
@@ -161,7 +144,31 @@ select{
 	font-size: 30px;
 }
 
-/* button {
-	width: 10em;
-	height:3em;
-} */
+#button_container {
+    display: flex; /* 横並びにする */
+    justify-content: center; /* ボタンを中央揃え */
+    gap: 20px; /* ボタン間の余白 */
+}
+
+#button_container form {
+    display: inline-block; /* フォームをボタンサイズに合わせる */
+    margin: 0; /* 不要な余白を削除 */
+}
+
+/*
+.submit_button {
+    padding: 15px 40px; /* ボタンのサイズを調整
+    font-size: 16px;
+    background-color: #0077FF;
+    border: 1px solid #0077FF;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.1s linear;
+    width: auto; /* ボタンの幅を調整
+}
+
+.submit_button:hover {
+    background: #0055CC;
+}
+*/
