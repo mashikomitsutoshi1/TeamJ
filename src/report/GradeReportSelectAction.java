@@ -24,7 +24,7 @@ public class GradeReportSelectAction extends Action {
 		// メッセージを設定してフォワード先を返す エラー画面
 		if (s_admission_year.isEmpty() || s_class_no.isEmpty()) {
 
-            String error1 = "学生成績表";
+            String error1 = "成績評価表";
             String error2 = "入力項目が正しくありません。";
             String error3 = "入学年度、クラスを確認してください。";
             System.out.println(error1);
