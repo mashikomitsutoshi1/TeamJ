@@ -92,11 +92,25 @@
 			    </c:forEach>
 		</table>
 
-		<form action="StudentGradeReportWriteToCsv.action" method="post">
-			<p id="submit_button_cover">
-				<input type="submit" id="submit_button" value="ファイル出力">
-			</p>
-		</form>
+		<div id="button_container">
+			<form action="StudentGradeReportWriteToCsv.action" method="post">
+				<p id="submit_button_cover">
+					<input type="submit" id="submit_button" value="ファイル出力">
+				</p>
+			</form>
+
+			<form action="StudentGradeReport.action" method="post">
+				<p id="submit_button_cover">
+					<input type="submit" id="submit_button" value="クリア">
+				</p>
+			</form>
+			<form action="../log/menu.jsp" method="post">
+				<p id="submit_button_cover">
+					<input type="submit" id="submit_button" value="終了">
+				</p>
+			</form>
+		</div>
+
 
 	</div>
 </div>
