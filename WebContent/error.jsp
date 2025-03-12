@@ -14,5 +14,15 @@
 	<h2><%= request.getAttribute("error1")%></h2>
 	<h2><%= request.getAttribute("error2")%></h2>
 	<h2><%= request.getAttribute("error3")%></h2>
+
+	<div id="button_container">
+		<form action="../log/menu.jsp" method="post">
+			<p id="submit_button_cover">
+				<input type="submit" id="submit_button" value="終了">
+			</p>
+		</form>
+	</div>
+
 </div>
+
 <%@include file="footer.jsp" %>
