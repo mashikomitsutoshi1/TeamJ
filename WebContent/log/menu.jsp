@@ -78,9 +78,9 @@
                     </div>
                     <div class="card-body">
                         <a href="../syllabus/SyllabusMaintenance.action" class="btn btn-primary btn-sm mb-1 w-100">シラバス保守</a>
-						<a class="btn btn-primary btn-sm mb-1 w-100" href="/TeamJ/report/GradeReport.action">成績評価表</a>
+						<a class="btn btn-primary btn-sm mb-1 w-100" href="../report/GradeReport.action">成績評価表</a>
                         <a href="../scoreTypeClass/ScoreTypeSelect.action" class="btn btn-primary btn-sm mb-1 w-100">成績評価保守</a>
-						<a class="btn btn-primary btn-sm mb-1 w-100" href="/TeamJ/report/StudentGradeReport.action">学生成績表</a>
+						<a class="btn btn-primary btn-sm mb-1 w-100" href="../report/StudentGradeReport.action">学生成績表</a>
                         <a href="../attendance/AttendanceRateCalculation.action" class="btn btn-primary btn-sm mb-1 w-100">出席率算出</a>
                     </div>
                 </div>
