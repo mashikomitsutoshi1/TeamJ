@@ -78,7 +78,7 @@
             </div>
         </form>
 
-		<form action="../index.jsp" method="post" onsubmit="return confirm('終了しますか？');">
+		<form action="../log/menu.jsp" method="post" onsubmit="return confirm('終了しますか？');">
 		    <button type="submit" class="btn btn-danger btn-sm">終了</button>
 		</form>
     </div>

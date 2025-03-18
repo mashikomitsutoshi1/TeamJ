@@ -32,7 +32,7 @@ public class AttendanceRateCalculationAction extends Action {
                      "FROM attendance a " +
                      "JOIN student s ON a.student_no = s.student_no " +
                      "WHERE TO_CHAR(a.processing_date, 'YYYY-MM') BETWEEN ? AND ? " +
-                     "AND s.class = ? " +
+                     "AND s.class_no = ? " +
                      "GROUP BY month " +
                      "ORDER BY month";
 

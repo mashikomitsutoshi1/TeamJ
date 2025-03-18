@@ -74,7 +74,7 @@ public class SearchStudentInfoAction extends Action {
             }
         }
 
-        System.out.println(scores.get(0).getPoint());
+//        System.out.println(scores.get(0).getPoint());
 
         // 成績情報と学生情報をリクエストにセット
         req.setAttribute("scores", scores);

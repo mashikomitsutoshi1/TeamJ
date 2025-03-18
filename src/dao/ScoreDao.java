@@ -38,7 +38,7 @@ public class ScoreDao extends Dao{
 					+"left join subject as d on b.curriculum_category = d.subject_code "
 					+"where "
 					+" a.admission_year = ? "
-					+" and a.class = ? ");
+					+" and a.class_no = ? ");
 
 			statement.setString(1, subjectCd);
 			statement.setInt(2, admissionYear-2000);
@@ -105,13 +105,13 @@ public class ScoreDao extends Dao{
 					+",a.subject_code"
 					+",b.subject_name"
 					+",a.point"
-					+",main.class"
+					+",main.class_no"
 					+",a.extraction_date"
 					+" FROM student as main"
 					+" left join score as a on main.admission_year = a.admission_year and main.student_no = a.student_no"
 					+" left join subject as b on a.subject_code = b.subject_code"
 					+" inner join (select * from syllabus where curriculum_category = ?) as c on main.admission_year = c.admission_year"
-					+" where main.admission_year = ? and main.class = ? ");
+					+" where main.admission_year = ? and main.class_no = ? ");
 
 			statement.setString(1, subjectCd);
 			statement.setInt(2, admissionYear-2000);
@@ -131,7 +131,7 @@ public class ScoreDao extends Dao{
 				score.setSubjectCode(rSet.getString("subject_code"));
 				score.setSubjectName(rSet.getString("subject_name"));
 				score.setPoint(rSet.getInt("point"));
-				score.setClassName(rSet.getString("class"));
+				score.setClassName(rSet.getString("class_no"));
 				score.setExtractionDate(rSet.getDate("extraction_date"));
 				list.add(score);
 			}

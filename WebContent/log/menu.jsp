@@ -57,12 +57,13 @@
                     </div>
                     <div class="card-body">
                         <% if ("1".equals(adminFlg)) { %>
+                        	<!--
                             <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">成績評価保守期限管理</a>
-                            <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">シラバス保守権限管理</a>
+                            <a href="../syllabus/SyllabusMaintenance.action" class="btn btn-primary btn-sm mb-1 w-100">シラバス保守権限管理</a>
+                            ログインID保守で管理
+                            -->
                             <a href="../sys_con/systemcontrol.jsp" class="btn btn-primary btn-sm mb-1 w-100">ログインID保守</a>
                         <% } else { %>
-                            <button class="btn btn-secondary btn-sm mb-1 w-100" disabled>成績評価保守期限管理</button>
-                            <button class="btn btn-secondary btn-sm mb-1 w-100" disabled>シラバス保守権限管理</button>
                             <button class="btn btn-secondary btn-sm mb-1 w-100" disabled>ログインID保守</button>
                         <% } %>
                     </div>
@@ -76,7 +77,7 @@
                         <h2 class="h5 mb-0">一般教員機能</h2>
                     </div>
                     <div class="card-body">
-                        <a href="〇〇.jsp" class="btn btn-primary btn-sm mb-1 w-100">シラバス保守</a>
+                        <a href="../syllabus/SyllabusMaintenance.action" class="btn btn-primary btn-sm mb-1 w-100">シラバス保守</a>
 						<a class="btn btn-primary btn-sm mb-1 w-100" href="/TeamJ/report/GradeReport.action">成績評価表</a>
                         <a href="../scoreTypeClass/ScoreTypeSelect.action" class="btn btn-primary btn-sm mb-1 w-100">成績評価保守</a>
 						<a class="btn btn-primary btn-sm mb-1 w-100" href="/TeamJ/report/StudentGradeReport.action">学生成績表</a>

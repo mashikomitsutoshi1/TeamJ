@@ -1,22 +1,42 @@
 <%@page contentType="text/html; charset=UTF-8" %>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- 共通CSS -->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/styles.css">
+
 <style>
-  .inline {
-    display: inline-block;
-    margin-right: 20px; /* 余白を調整 */
+  body {
+    background-color: #e0f7ff;
+    background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
+                      linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
+    background-size: 20px 20px;
   }
   .main {
-    margin-bottom: 20px; /* メインセクションの余白 */
+    margin-bottom: 20px;
+    padding: 20px;
   }
-  /* 背景デザイン */
-    body {
-    	background-color: #e0f7ff; /* 薄い青色 */
-        background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
-                          linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
-        background-size: 20px 20px; /* 方眼のサイズ調整 */
-    }
+  .button-container {
+    text-align: right;
+    margin-top: 10px;
+  }
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+  }
+  .inline {
+    min-width: 150px;
+  }
+  #search-button {
+    margin-left: 10px;
+  }
 </style>
 
-<div class="main">
+<div class="container">
+    <div class="card main">
   <p>処理内容</p>
   <form id="student_number_regist" action="ScoreRegistStudentSearchScreenDisplay.action" method="post" class="inline">
     <label>
@@ -34,7 +54,7 @@
 </div>
 
 <br>
-<div class="search">
+<div class="search-container">
 
   <!-- 学籍番号の入力欄 -->
 
@@ -50,6 +70,7 @@
      <span id="student_id" class="inline">学籍番号：<input type="text" name="student_id" id="student_id_input" size="10" required> </span>
   </form>
 
+</div>
 </div>
 
 <script>

@@ -42,8 +42,11 @@ public class AttendanceWriteToCsvAction extends Action {
         List<Attendance> attendanceList = attendanceDao.search2();
 
         if (studentList == null || studentList.isEmpty()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "指定クラスの学生データがありません");
-            return;
+            //response.sendError(HttpServletResponse.SC_BAD_REQUEST, "指定クラスの学生データがありません");
+        	//レスポンス値をセット 6
+            request.setAttribute("error1","指定クラスの学生データがありません");
+            throw new Exception();
+            //return;
         }
 
         // 出欠データをマッピング（studentNo -> (日付 -> ステータス)）

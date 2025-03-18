@@ -25,6 +25,23 @@
 			linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
 			background-size: 20px 20px;
 		}
+			table {
+			width: 100%;
+			table-layout: fixed;
+			border-collapse: collapse; /* 境界線を1本にまとめる */
+			}
+
+			th, td {
+			overflow: hidden;      /* テキストがはみ出ないように */
+			text-overflow: ellipsis; /* 長いテキストは「...」で省略 */
+			white-space: nowrap;   /* テキストの折り返しを防止 */
+			}
+			input[type="text"] {
+    		min-width: 80px; /* 最小幅を指定 */
+    		width: 100%;     /* テーブルの列幅にフィット */
+    		box-sizing: border-box; /* パディングを含めて幅を計算 */
+			}
+
 		</style>
 	</head>
 

@@ -34,6 +34,8 @@ public class AttendanceEntryInsertAction extends Action {
                 Enumeration<String> params = request.getParameterNames();
                 int insertCount = 0; // 追加・更新件数カウント
 
+                System.out.println("params.hasMoreElements():"+params.hasMoreElements());
+
                 while (params.hasMoreElements()) {
                     String paramName = params.nextElement();
                     System.out.println("Received param: " + paramName + " = " + request.getParameter(paramName)); // 🔍 デバッグ用
@@ -65,9 +67,12 @@ public class AttendanceEntryInsertAction extends Action {
                     }
                 }
 
+                System.out.println(insertCount);
+
                 if (insertCount > 0) {
                     int[] results = ps.executeBatch();
                     con.commit(); // コミット
+                    System.out.println("出欠データを登録しました！ " + results.length + " 件登録");
                     response.getWriter().write("出欠データを登録しました！ " + results.length + " 件登録");
                 } else {
                     response.getWriter().write("登録するデータがありませんでした。");

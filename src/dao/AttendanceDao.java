@@ -49,7 +49,7 @@ public class AttendanceDao extends Dao {
 //	    System.out.println("Connection established.");
 
 	    PreparedStatement st = con.prepareStatement(
-		        "SELECT * FROM student WHERE class = ? ORDER BY student_name_kana");
+		        "SELECT * FROM student WHERE class_no = ? ORDER BY student_name_kana");
 		    st.setString(1, processingClass);
 		    ResultSet rs = st.executeQuery();
 //		    System.out.println("Query executed: " + st);
@@ -60,7 +60,7 @@ public class AttendanceDao extends Dao {
 	        s.setStudentNo(rs.getString("student_no"));
 	        s.setStudentName(rs.getString("student_name"));
 	        s.setStudentNameKana(rs.getString("student_name_kana"));
-	        s.setClassNo(rs.getString("class"));
+	        s.setClassNo(rs.getString("class_no"));
 	        s.setDispositionStatus(rs.getString("disposition_status"));
 	        s.setTotalAbsences(rs.getFloat("total_absences"));
 //	        System.out.println("Student retrieved: " + s.getStudentNo() + ", " + s.getStudentName());

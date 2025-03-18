@@ -6,6 +6,16 @@
 	<head>
 	    <title>出欠席処理結果</title>
 	    <script src="attendance.js"></script> <!-- JS ファイルを読み込む -->
+	    <!-- カスタムスタイル -->
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/styles.css">
+	    <style>
+        body {
+            background-color: #e0f7ff;/* 薄い青色 */
+            background-image: linear-gradient(0deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%),
+                              linear-gradient(90deg, transparent 24%, white 25%, white 26%, transparent 27%, transparent 74%, white 75%, white 76%, transparent 77%);
+            background-size: 20px 20px;/* 方眼のサイズ調整 */
+        }
+    	</style>
 	</head>
 
 	<body>
@@ -65,7 +75,7 @@
 </c:forEach>
 
 <c:if test="${!attendanceFound}">
-    <input type="text" value="" class="attendance-input" style="width:2em; name="attendance_${student.studentNo}_${formattedDay}"">
+    <input type="text" value="" class="attendance-input" style="width:2em;" name="attendance_${student.studentNo}_${formattedDay}">
 </c:if>
 	                            </td>
 	                        </c:forEach>

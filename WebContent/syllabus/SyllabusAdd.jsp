@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <div class="container mt-4">
+    <div class="container mt-5">
         <!-- ヘッダー部分 -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1>シラバス追加</h1>
